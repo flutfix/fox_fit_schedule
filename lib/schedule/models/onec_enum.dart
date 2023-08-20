@@ -1,0 +1,4 @@
+enum OnecEnum {
+  file,
+  group,
+}

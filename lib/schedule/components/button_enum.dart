@@ -1,0 +1,4 @@
+enum ButtonEnum {
+  filled,
+  outline,
+}
