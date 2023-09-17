@@ -9,7 +9,7 @@ class TokenInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTE0NDM1NzgsImlhdCI6MTY3OTkwNzU3OCwidXNlcl9pZCI6IjFjNWJiNTZjLWZiZjYtNDA2MC1hZmExLWJhMGQ4N2M2YmZiNSJ9.gHnueCkhLnMpcVXjQl736LpNPP9PWecx8Z7CYF7XVtw';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjY0OTIyMTYsImlhdCI6MTY5NDk1NjIxNiwidXNlcl9pZCI6Ijk5ODhiOTMwLTBkYzctNGYzYy05NmI3LTk5Y2VmNDkxYTcyYSJ9.u7QyvBXA-IXstmXrMNnhq67wzzacYNARns-53UEMA5w';
 
     options.headers.addAll(<String, dynamic>{'x-token': token});
     super.onRequest(options, handler);

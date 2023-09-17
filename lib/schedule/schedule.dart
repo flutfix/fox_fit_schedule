@@ -11,8 +11,9 @@ import 'package:fox_fit_schedule/schedule/components/lessons_grid.dart';
 import 'package:fox_fit_schedule/schedule/components/loading_indicator.dart';
 import 'package:fox_fit_schedule/schedule/components/timelapse.dart';
 import 'package:fox_fit_schedule/schedule/models/category_model.dart';
+import 'package:uni_links/uni_links.dart';
 
-const clubId = '6bba8b26-44f0-4229-8bca-c9ca7d676f24';
+late final String _clubId;
 
 class Schedule extends StatefulWidget {
   const Schedule({super.key});
@@ -37,7 +38,7 @@ class _ScheduleState extends State<Schedule> {
     _verticalScheduleController = ScrollController();
     _horizontalScheduleController = ScrollController(initialScrollOffset: 980);
 
-    context.read<ScheduleBloc>().add(const ScheduleEvent.fetchData(clubId: clubId));
+    _extractCode();
   }
 
   @override
@@ -143,6 +144,15 @@ class _ScheduleState extends State<Schedule> {
     );
   }
 
+  /// Получение кода из ссылки.
+  Future<void> _extractCode() async {
+    final link = await getInitialLink();
+    final code = link?.split('club_id=').last.split('&').first ?? '';
+    _clubId = code;
+    if (!mounted) return;
+    context.read<ScheduleBloc>().add(ScheduleEvent.fetchData(clubId: _clubId));
+  }
+
   /// Смена категории.
   void _chooseCategory(CategoryModel category) {
     context.read<ScheduleBloc>().add(ScheduleEvent.chooseCategory(category: category));
@@ -170,7 +180,7 @@ class _ScheduleState extends State<Schedule> {
         curve: Curves.easeInOut,
       );
       final startDate = DateTime(currentStartDate.year, currentStartDate.month, currentStartDate.day - 7);
-      scheduleBloc.add(ScheduleEvent.changeStartDateSchedule(clubId: clubId, startDate: startDate));
+      scheduleBloc.add(ScheduleEvent.changeStartDateSchedule(clubId: _clubId, startDate: startDate));
 
       _horizontalScheduleController.jumpTo(980);
     }
@@ -187,7 +197,7 @@ class _ScheduleState extends State<Schedule> {
         curve: Curves.easeInOut,
       );
       final startDate = DateTime(currentStartDate.year, currentStartDate.month, currentStartDate.day + 7);
-      scheduleBloc.add(ScheduleEvent.changeStartDateSchedule(clubId: clubId, startDate: startDate));
+      scheduleBloc.add(ScheduleEvent.changeStartDateSchedule(clubId: _clubId, startDate: startDate));
       _horizontalScheduleController.jumpTo(980);
     }
   }
