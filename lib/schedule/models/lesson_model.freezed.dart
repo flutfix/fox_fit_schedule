@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'preview_lesson_model.dart';
+part of 'lesson_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PreviewLessonModel _$PreviewLessonModelFromJson(Map<String, dynamic> json) {
-  return _PreviewLessonModel.fromJson(json);
+LessonModel _$LessonModelFromJson(Map<String, dynamic> json) {
+  return _LessonModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PreviewLessonModel {
+mixin _$LessonModel {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'by_appointment')
   bool get byAppointment => throw _privateConstructorUsedError;
@@ -54,15 +54,15 @@ mixin _$PreviewLessonModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PreviewLessonModelCopyWith<PreviewLessonModel> get copyWith =>
+  $LessonModelCopyWith<LessonModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PreviewLessonModelCopyWith<$Res> {
-  factory $PreviewLessonModelCopyWith(
-          PreviewLessonModel value, $Res Function(PreviewLessonModel) then) =
-      _$PreviewLessonModelCopyWithImpl<$Res, PreviewLessonModel>;
+abstract class $LessonModelCopyWith<$Res> {
+  factory $LessonModelCopyWith(
+          LessonModel value, $Res Function(LessonModel) then) =
+      _$LessonModelCopyWithImpl<$Res, LessonModel>;
   @useResult
   $Res call(
       {String id,
@@ -91,9 +91,9 @@ abstract class $PreviewLessonModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PreviewLessonModelCopyWithImpl<$Res, $Val extends PreviewLessonModel>
-    implements $PreviewLessonModelCopyWith<$Res> {
-  _$PreviewLessonModelCopyWithImpl(this._value, this._then);
+class _$LessonModelCopyWithImpl<$Res, $Val extends LessonModel>
+    implements $LessonModelCopyWith<$Res> {
+  _$LessonModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -185,11 +185,11 @@ class _$PreviewLessonModelCopyWithImpl<$Res, $Val extends PreviewLessonModel>
 }
 
 /// @nodoc
-abstract class _$$_PreviewLessonModelCopyWith<$Res>
-    implements $PreviewLessonModelCopyWith<$Res> {
-  factory _$$_PreviewLessonModelCopyWith(_$_PreviewLessonModel value,
-          $Res Function(_$_PreviewLessonModel) then) =
-      __$$_PreviewLessonModelCopyWithImpl<$Res>;
+abstract class _$$_LessonModelCopyWith<$Res>
+    implements $LessonModelCopyWith<$Res> {
+  factory _$$_LessonModelCopyWith(
+          _$_LessonModel value, $Res Function(_$_LessonModel) then) =
+      __$$_LessonModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -219,11 +219,11 @@ abstract class _$$_PreviewLessonModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PreviewLessonModelCopyWithImpl<$Res>
-    extends _$PreviewLessonModelCopyWithImpl<$Res, _$_PreviewLessonModel>
-    implements _$$_PreviewLessonModelCopyWith<$Res> {
-  __$$_PreviewLessonModelCopyWithImpl(
-      _$_PreviewLessonModel _value, $Res Function(_$_PreviewLessonModel) _then)
+class __$$_LessonModelCopyWithImpl<$Res>
+    extends _$LessonModelCopyWithImpl<$Res, _$_LessonModel>
+    implements _$$_LessonModelCopyWith<$Res> {
+  __$$_LessonModelCopyWithImpl(
+      _$_LessonModel _value, $Res Function(_$_LessonModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -245,7 +245,7 @@ class __$$_PreviewLessonModelCopyWithImpl<$Res>
     Object? trainerId = null,
     Object? trainerName = null,
   }) {
-    return _then(_$_PreviewLessonModel(
+    return _then(_$_LessonModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -312,8 +312,8 @@ class __$$_PreviewLessonModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PreviewLessonModel implements _PreviewLessonModel {
-  const _$_PreviewLessonModel(
+class _$_LessonModel implements _LessonModel {
+  const _$_LessonModel(
       {required this.id,
       @JsonKey(name: 'by_appointment') required this.byAppointment,
       @JsonKey(name: 'client_booking') required this.clientBooking,
@@ -338,8 +338,8 @@ class _$_PreviewLessonModel implements _PreviewLessonModel {
       @JsonKey(name: 'trainer_id') required this.trainerId,
       @JsonKey(name: 'trainer_name') required this.trainerName});
 
-  factory _$_PreviewLessonModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PreviewLessonModelFromJson(json);
+  factory _$_LessonModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LessonModelFromJson(json);
 
   @override
   final String id;
@@ -390,14 +390,14 @@ class _$_PreviewLessonModel implements _PreviewLessonModel {
 
   @override
   String toString() {
-    return 'PreviewLessonModel(id: $id, byAppointment: $byAppointment, clientBooking: $clientBooking, free: $free, booking: $booking, capacity: $capacity, duration: $duration, startDate: $startDate, endDate: $endDate, placeId: $placeId, placeName: $placeName, serviceId: $serviceId, serviceName: $serviceName, trainerId: $trainerId, trainerName: $trainerName)';
+    return 'LessonModel(id: $id, byAppointment: $byAppointment, clientBooking: $clientBooking, free: $free, booking: $booking, capacity: $capacity, duration: $duration, startDate: $startDate, endDate: $endDate, placeId: $placeId, placeName: $placeName, serviceId: $serviceId, serviceName: $serviceName, trainerId: $trainerId, trainerName: $trainerName)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PreviewLessonModel &&
+            other is _$_LessonModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.byAppointment, byAppointment) ||
                 other.byAppointment == byAppointment) &&
@@ -448,20 +448,19 @@ class _$_PreviewLessonModel implements _PreviewLessonModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PreviewLessonModelCopyWith<_$_PreviewLessonModel> get copyWith =>
-      __$$_PreviewLessonModelCopyWithImpl<_$_PreviewLessonModel>(
-          this, _$identity);
+  _$$_LessonModelCopyWith<_$_LessonModel> get copyWith =>
+      __$$_LessonModelCopyWithImpl<_$_LessonModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PreviewLessonModelToJson(
+    return _$$_LessonModelToJson(
       this,
     );
   }
 }
 
-abstract class _PreviewLessonModel implements PreviewLessonModel {
-  const factory _PreviewLessonModel(
+abstract class _LessonModel implements LessonModel {
+  const factory _LessonModel(
           {required final String id,
           @JsonKey(name: 'by_appointment') required final bool byAppointment,
           @JsonKey(name: 'client_booking') required final bool clientBooking,
@@ -485,10 +484,10 @@ abstract class _PreviewLessonModel implements PreviewLessonModel {
           @JsonKey(name: 'service_name') required final String serviceName,
           @JsonKey(name: 'trainer_id') required final String trainerId,
           @JsonKey(name: 'trainer_name') required final String trainerName}) =
-      _$_PreviewLessonModel;
+      _$_LessonModel;
 
-  factory _PreviewLessonModel.fromJson(Map<String, dynamic> json) =
-      _$_PreviewLessonModel.fromJson;
+  factory _LessonModel.fromJson(Map<String, dynamic> json) =
+      _$_LessonModel.fromJson;
 
   @override
   String get id;
@@ -538,6 +537,6 @@ abstract class _PreviewLessonModel implements PreviewLessonModel {
   String get trainerName;
   @override
   @JsonKey(ignore: true)
-  _$$_PreviewLessonModelCopyWith<_$_PreviewLessonModel> get copyWith =>
+  _$$_LessonModelCopyWith<_$_LessonModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

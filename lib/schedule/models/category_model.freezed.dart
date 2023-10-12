@@ -22,12 +22,8 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 mixin _$CategoryModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'club_id')
-  String get clubId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'parent_id')
-  String get parentId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  int get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'services_ids')
+  List<String> get servicesIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,9 +40,7 @@ abstract class $CategoryModelCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      @JsonKey(name: 'club_id') String clubId,
-      @JsonKey(name: 'parent_id') String parentId,
-      @JsonKey(name: 'created_at') int createdAt});
+      @JsonKey(name: 'services_ids') List<String> servicesIds});
 }
 
 /// @nodoc
@@ -64,9 +58,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? clubId = null,
-    Object? parentId = null,
-    Object? createdAt = null,
+    Object? servicesIds = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,18 +69,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentId: null == parentId
-          ? _value.parentId
-          : parentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as int,
+      servicesIds: null == servicesIds
+          ? _value.servicesIds
+          : servicesIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -104,9 +88,7 @@ abstract class _$$_CategoryModelCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      @JsonKey(name: 'club_id') String clubId,
-      @JsonKey(name: 'parent_id') String parentId,
-      @JsonKey(name: 'created_at') int createdAt});
+      @JsonKey(name: 'services_ids') List<String> servicesIds});
 }
 
 /// @nodoc
@@ -122,9 +104,7 @@ class __$$_CategoryModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? clubId = null,
-    Object? parentId = null,
-    Object? createdAt = null,
+    Object? servicesIds = null,
   }) {
     return _then(_$_CategoryModel(
       id: null == id
@@ -135,18 +115,10 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentId: null == parentId
-          ? _value.parentId
-          : parentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as int,
+      servicesIds: null == servicesIds
+          ? _value._servicesIds
+          : servicesIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -157,9 +129,8 @@ class _$_CategoryModel implements _CategoryModel {
   const _$_CategoryModel(
       {required this.id,
       required this.name,
-      @JsonKey(name: 'club_id') required this.clubId,
-      @JsonKey(name: 'parent_id') required this.parentId,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      @JsonKey(name: 'services_ids') required final List<String> servicesIds})
+      : _servicesIds = servicesIds;
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
@@ -168,19 +139,18 @@ class _$_CategoryModel implements _CategoryModel {
   final String id;
   @override
   final String name;
+  final List<String> _servicesIds;
   @override
-  @JsonKey(name: 'club_id')
-  final String clubId;
-  @override
-  @JsonKey(name: 'parent_id')
-  final String parentId;
-  @override
-  @JsonKey(name: 'created_at')
-  final int createdAt;
+  @JsonKey(name: 'services_ids')
+  List<String> get servicesIds {
+    if (_servicesIds is EqualUnmodifiableListView) return _servicesIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_servicesIds);
+  }
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, clubId: $clubId, parentId: $parentId, createdAt: $createdAt)';
+    return 'CategoryModel(id: $id, name: $name, servicesIds: $servicesIds)';
   }
 
   @override
@@ -190,17 +160,14 @@ class _$_CategoryModel implements _CategoryModel {
             other is _$_CategoryModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.parentId, parentId) ||
-                other.parentId == parentId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            const DeepCollectionEquality()
+                .equals(other._servicesIds, _servicesIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, clubId, parentId, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, const DeepCollectionEquality().hash(_servicesIds));
 
   @JsonKey(ignore: true)
   @override
@@ -218,12 +185,10 @@ class _$_CategoryModel implements _CategoryModel {
 
 abstract class _CategoryModel implements CategoryModel {
   const factory _CategoryModel(
-          {required final String id,
-          required final String name,
-          @JsonKey(name: 'club_id') required final String clubId,
-          @JsonKey(name: 'parent_id') required final String parentId,
-          @JsonKey(name: 'created_at') required final int createdAt}) =
-      _$_CategoryModel;
+      {required final String id,
+      required final String name,
+      @JsonKey(name: 'services_ids')
+      required final List<String> servicesIds}) = _$_CategoryModel;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
@@ -233,14 +198,8 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   String get name;
   @override
-  @JsonKey(name: 'club_id')
-  String get clubId;
-  @override
-  @JsonKey(name: 'parent_id')
-  String get parentId;
-  @override
-  @JsonKey(name: 'created_at')
-  int get createdAt;
+  @JsonKey(name: 'services_ids')
+  List<String> get servicesIds;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>

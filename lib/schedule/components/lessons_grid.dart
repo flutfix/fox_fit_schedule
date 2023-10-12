@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fox_fit_schedule/schedule/common/layout.dart';
 import 'package:fox_fit_schedule/schedule/components/lessons_grid_column.dart';
-import 'package:fox_fit_schedule/schedule/models/preview_lesson_model.dart';
+import 'package:fox_fit_schedule/schedule/models/lesson_model.dart';
 
 class LessonsGrid extends StatelessWidget {
-  final List<PreviewLessonModel> previewLessons;
+  final List<LessonModel> lessons;
   final DateTime startDate;
   final ScrollController mainController;
   final ScrollController attachedController;
 
   const LessonsGrid({
     super.key,
-    required this.previewLessons,
+    required this.lessons,
     required this.startDate,
     required this.mainController,
     required this.attachedController,
@@ -41,7 +41,7 @@ class LessonsGrid extends StatelessWidget {
                 itemCount: 21,
                 itemBuilder: (context, i) {
                   final date = DateTime(startDate.year, startDate.month, startDate.day - 7 + i);
-                  final lessonsByDate = previewLessons.where((lesson) => lesson.startDate.day == date.day).toList();
+                  final lessonsByDate = lessons.where((lesson) => lesson.startDate.day == date.day).toList();
 
                   return LessonsGridColumn(date: date, lessons: lessonsByDate);
                 },

@@ -18,31 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ScheduleEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
+    required TResult Function(String clubId, DateTime startDate) fetchSchedule,
     required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
     required TResult Function(String clubId, DateTime startDate)
         changeStartDateSchedule,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
+    TResult? Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult? Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
+    TResult Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -50,34 +43,24 @@ mixin _$ScheduleEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
+    required TResult Function(ScheduleFetchScheduleEvent value) fetchSchedule,
     required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
     required TResult Function(ScheduleChangeStartDateScheduleEvent value)
         changeStartDateSchedule,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult? Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -104,107 +87,112 @@ class _$ScheduleEventCopyWithImpl<$Res, $Val extends ScheduleEvent>
 }
 
 /// @nodoc
-abstract class _$$ScheduleFetchDataEventCopyWith<$Res> {
-  factory _$$ScheduleFetchDataEventCopyWith(_$ScheduleFetchDataEvent value,
-          $Res Function(_$ScheduleFetchDataEvent) then) =
-      __$$ScheduleFetchDataEventCopyWithImpl<$Res>;
+abstract class _$$ScheduleFetchScheduleEventCopyWith<$Res> {
+  factory _$$ScheduleFetchScheduleEventCopyWith(
+          _$ScheduleFetchScheduleEvent value,
+          $Res Function(_$ScheduleFetchScheduleEvent) then) =
+      __$$ScheduleFetchScheduleEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({String clubId});
+  $Res call({String clubId, DateTime startDate});
 }
 
 /// @nodoc
-class __$$ScheduleFetchDataEventCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$ScheduleFetchDataEvent>
-    implements _$$ScheduleFetchDataEventCopyWith<$Res> {
-  __$$ScheduleFetchDataEventCopyWithImpl(_$ScheduleFetchDataEvent _value,
-      $Res Function(_$ScheduleFetchDataEvent) _then)
+class __$$ScheduleFetchScheduleEventCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$ScheduleFetchScheduleEvent>
+    implements _$$ScheduleFetchScheduleEventCopyWith<$Res> {
+  __$$ScheduleFetchScheduleEventCopyWithImpl(
+      _$ScheduleFetchScheduleEvent _value,
+      $Res Function(_$ScheduleFetchScheduleEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? clubId = null,
+    Object? startDate = null,
   }) {
-    return _then(_$ScheduleFetchDataEvent(
+    return _then(_$ScheduleFetchScheduleEvent(
       clubId: null == clubId
           ? _value.clubId
           : clubId // ignore: cast_nullable_to_non_nullable
               as String,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ScheduleFetchDataEvent implements ScheduleFetchDataEvent {
-  const _$ScheduleFetchDataEvent({required this.clubId});
+class _$ScheduleFetchScheduleEvent implements ScheduleFetchScheduleEvent {
+  const _$ScheduleFetchScheduleEvent(
+      {required this.clubId, required this.startDate});
 
   @override
   final String clubId;
+  @override
+  final DateTime startDate;
 
   @override
   String toString() {
-    return 'ScheduleEvent.fetchData(clubId: $clubId)';
+    return 'ScheduleEvent.fetchSchedule(clubId: $clubId, startDate: $startDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScheduleFetchDataEvent &&
-            (identical(other.clubId, clubId) || other.clubId == clubId));
+            other is _$ScheduleFetchScheduleEvent &&
+            (identical(other.clubId, clubId) || other.clubId == clubId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clubId);
+  int get hashCode => Object.hash(runtimeType, clubId, startDate);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScheduleFetchDataEventCopyWith<_$ScheduleFetchDataEvent> get copyWith =>
-      __$$ScheduleFetchDataEventCopyWithImpl<_$ScheduleFetchDataEvent>(
-          this, _$identity);
+  _$$ScheduleFetchScheduleEventCopyWith<_$ScheduleFetchScheduleEvent>
+      get copyWith => __$$ScheduleFetchScheduleEventCopyWithImpl<
+          _$ScheduleFetchScheduleEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
+    required TResult Function(String clubId, DateTime startDate) fetchSchedule,
     required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
     required TResult Function(String clubId, DateTime startDate)
         changeStartDateSchedule,
   }) {
-    return fetchData(clubId);
+    return fetchSchedule(clubId, startDate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
+    TResult? Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult? Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
   }) {
-    return fetchData?.call(clubId);
+    return fetchSchedule?.call(clubId, startDate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
+    TResult Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
     required TResult orElse(),
   }) {
-    if (fetchData != null) {
-      return fetchData(clubId);
+    if (fetchSchedule != null) {
+      return fetchSchedule(clubId, startDate);
     }
     return orElse();
   }
@@ -212,224 +200,50 @@ class _$ScheduleFetchDataEvent implements ScheduleFetchDataEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
+    required TResult Function(ScheduleFetchScheduleEvent value) fetchSchedule,
     required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
     required TResult Function(ScheduleChangeStartDateScheduleEvent value)
         changeStartDateSchedule,
   }) {
-    return fetchData(this);
+    return fetchSchedule(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult? Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
   }) {
-    return fetchData?.call(this);
+    return fetchSchedule?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
     required TResult orElse(),
   }) {
-    if (fetchData != null) {
-      return fetchData(this);
+    if (fetchSchedule != null) {
+      return fetchSchedule(this);
     }
     return orElse();
   }
 }
 
-abstract class ScheduleFetchDataEvent implements ScheduleEvent {
-  const factory ScheduleFetchDataEvent({required final String clubId}) =
-      _$ScheduleFetchDataEvent;
+abstract class ScheduleFetchScheduleEvent implements ScheduleEvent {
+  const factory ScheduleFetchScheduleEvent(
+      {required final String clubId,
+      required final DateTime startDate}) = _$ScheduleFetchScheduleEvent;
 
   String get clubId;
+  DateTime get startDate;
   @JsonKey(ignore: true)
-  _$$ScheduleFetchDataEventCopyWith<_$ScheduleFetchDataEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ScheduleFetchCategoriesEventCopyWith<$Res> {
-  factory _$$ScheduleFetchCategoriesEventCopyWith(
-          _$ScheduleFetchCategoriesEvent value,
-          $Res Function(_$ScheduleFetchCategoriesEvent) then) =
-      __$$ScheduleFetchCategoriesEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String clubId});
-}
-
-/// @nodoc
-class __$$ScheduleFetchCategoriesEventCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res, _$ScheduleFetchCategoriesEvent>
-    implements _$$ScheduleFetchCategoriesEventCopyWith<$Res> {
-  __$$ScheduleFetchCategoriesEventCopyWithImpl(
-      _$ScheduleFetchCategoriesEvent _value,
-      $Res Function(_$ScheduleFetchCategoriesEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? clubId = null,
-  }) {
-    return _then(_$ScheduleFetchCategoriesEvent(
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ScheduleFetchCategoriesEvent implements ScheduleFetchCategoriesEvent {
-  const _$ScheduleFetchCategoriesEvent({required this.clubId});
-
-  @override
-  final String clubId;
-
-  @override
-  String toString() {
-    return 'ScheduleEvent.fetchCategories(clubId: $clubId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ScheduleFetchCategoriesEvent &&
-            (identical(other.clubId, clubId) || other.clubId == clubId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, clubId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScheduleFetchCategoriesEventCopyWith<_$ScheduleFetchCategoriesEvent>
-      get copyWith => __$$ScheduleFetchCategoriesEventCopyWithImpl<
-          _$ScheduleFetchCategoriesEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
-    required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
-    required TResult Function(String clubId, DateTime startDate)
-        changeStartDateSchedule,
-  }) {
-    return fetchCategories(clubId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
-    TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
-    TResult? Function(String clubId, DateTime startDate)?
-        changeStartDateSchedule,
-  }) {
-    return fetchCategories?.call(clubId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
-    TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
-    TResult Function(String clubId, DateTime startDate)?
-        changeStartDateSchedule,
-    required TResult orElse(),
-  }) {
-    if (fetchCategories != null) {
-      return fetchCategories(clubId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
-    required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
-    required TResult Function(ScheduleChangeStartDateScheduleEvent value)
-        changeStartDateSchedule,
-  }) {
-    return fetchCategories(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
-    TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
-    TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
-        changeStartDateSchedule,
-  }) {
-    return fetchCategories?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
-    TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
-    TResult Function(ScheduleChangeStartDateScheduleEvent value)?
-        changeStartDateSchedule,
-    required TResult orElse(),
-  }) {
-    if (fetchCategories != null) {
-      return fetchCategories(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScheduleFetchCategoriesEvent implements ScheduleEvent {
-  const factory ScheduleFetchCategoriesEvent({required final String clubId}) =
-      _$ScheduleFetchCategoriesEvent;
-
-  String get clubId;
-  @JsonKey(ignore: true)
-  _$$ScheduleFetchCategoriesEventCopyWith<_$ScheduleFetchCategoriesEvent>
+  _$$ScheduleFetchScheduleEventCopyWith<_$ScheduleFetchScheduleEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -511,11 +325,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
+    required TResult Function(String clubId, DateTime startDate) fetchSchedule,
     required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
     required TResult Function(String clubId, DateTime startDate)
         changeStartDateSchedule,
   }) {
@@ -525,10 +336,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
+    TResult? Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult? Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
   }) {
@@ -538,10 +347,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
+    TResult Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -555,12 +362,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
+    required TResult Function(ScheduleFetchScheduleEvent value) fetchSchedule,
     required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
     required TResult Function(ScheduleChangeStartDateScheduleEvent value)
         changeStartDateSchedule,
   }) {
@@ -570,11 +373,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult? Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
   }) {
@@ -584,11 +384,8 @@ class _$ScheduleChooseCategoryEvent implements ScheduleChooseCategoryEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -607,188 +404,6 @@ abstract class ScheduleChooseCategoryEvent implements ScheduleEvent {
   CategoryModel get category;
   @JsonKey(ignore: true)
   _$$ScheduleChooseCategoryEventCopyWith<_$ScheduleChooseCategoryEvent>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ScheduleFetchPreviewLessonsEventCopyWith<$Res> {
-  factory _$$ScheduleFetchPreviewLessonsEventCopyWith(
-          _$ScheduleFetchPreviewLessonsEvent value,
-          $Res Function(_$ScheduleFetchPreviewLessonsEvent) then) =
-      __$$ScheduleFetchPreviewLessonsEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String clubId, DateTime startDate});
-}
-
-/// @nodoc
-class __$$ScheduleFetchPreviewLessonsEventCopyWithImpl<$Res>
-    extends _$ScheduleEventCopyWithImpl<$Res,
-        _$ScheduleFetchPreviewLessonsEvent>
-    implements _$$ScheduleFetchPreviewLessonsEventCopyWith<$Res> {
-  __$$ScheduleFetchPreviewLessonsEventCopyWithImpl(
-      _$ScheduleFetchPreviewLessonsEvent _value,
-      $Res Function(_$ScheduleFetchPreviewLessonsEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? clubId = null,
-    Object? startDate = null,
-  }) {
-    return _then(_$ScheduleFetchPreviewLessonsEvent(
-      clubId: null == clubId
-          ? _value.clubId
-          : clubId // ignore: cast_nullable_to_non_nullable
-              as String,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ScheduleFetchPreviewLessonsEvent
-    implements ScheduleFetchPreviewLessonsEvent {
-  const _$ScheduleFetchPreviewLessonsEvent(
-      {required this.clubId, required this.startDate});
-
-  @override
-  final String clubId;
-  @override
-  final DateTime startDate;
-
-  @override
-  String toString() {
-    return 'ScheduleEvent.fetchPreviewLessons(clubId: $clubId, startDate: $startDate)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ScheduleFetchPreviewLessonsEvent &&
-            (identical(other.clubId, clubId) || other.clubId == clubId) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, clubId, startDate);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScheduleFetchPreviewLessonsEventCopyWith<
-          _$ScheduleFetchPreviewLessonsEvent>
-      get copyWith => __$$ScheduleFetchPreviewLessonsEventCopyWithImpl<
-          _$ScheduleFetchPreviewLessonsEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
-    required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
-    required TResult Function(String clubId, DateTime startDate)
-        changeStartDateSchedule,
-  }) {
-    return fetchPreviewLessons(clubId, startDate);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
-    TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
-    TResult? Function(String clubId, DateTime startDate)?
-        changeStartDateSchedule,
-  }) {
-    return fetchPreviewLessons?.call(clubId, startDate);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
-    TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
-    TResult Function(String clubId, DateTime startDate)?
-        changeStartDateSchedule,
-    required TResult orElse(),
-  }) {
-    if (fetchPreviewLessons != null) {
-      return fetchPreviewLessons(clubId, startDate);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
-    required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
-    required TResult Function(ScheduleChangeStartDateScheduleEvent value)
-        changeStartDateSchedule,
-  }) {
-    return fetchPreviewLessons(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
-    TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
-    TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
-        changeStartDateSchedule,
-  }) {
-    return fetchPreviewLessons?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
-    TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
-    TResult Function(ScheduleChangeStartDateScheduleEvent value)?
-        changeStartDateSchedule,
-    required TResult orElse(),
-  }) {
-    if (fetchPreviewLessons != null) {
-      return fetchPreviewLessons(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScheduleFetchPreviewLessonsEvent implements ScheduleEvent {
-  const factory ScheduleFetchPreviewLessonsEvent(
-      {required final String clubId,
-      required final DateTime startDate}) = _$ScheduleFetchPreviewLessonsEvent;
-
-  String get clubId;
-  DateTime get startDate;
-  @JsonKey(ignore: true)
-  _$$ScheduleFetchPreviewLessonsEventCopyWith<
-          _$ScheduleFetchPreviewLessonsEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -872,11 +487,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String clubId) fetchData,
-    required TResult Function(String clubId) fetchCategories,
+    required TResult Function(String clubId, DateTime startDate) fetchSchedule,
     required TResult Function(CategoryModel category) chooseCategory,
-    required TResult Function(String clubId, DateTime startDate)
-        fetchPreviewLessons,
     required TResult Function(String clubId, DateTime startDate)
         changeStartDateSchedule,
   }) {
@@ -886,10 +498,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String clubId)? fetchData,
-    TResult? Function(String clubId)? fetchCategories,
+    TResult? Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult? Function(CategoryModel category)? chooseCategory,
-    TResult? Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult? Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
   }) {
@@ -899,10 +509,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String clubId)? fetchData,
-    TResult Function(String clubId)? fetchCategories,
+    TResult Function(String clubId, DateTime startDate)? fetchSchedule,
     TResult Function(CategoryModel category)? chooseCategory,
-    TResult Function(String clubId, DateTime startDate)? fetchPreviewLessons,
     TResult Function(String clubId, DateTime startDate)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -916,12 +524,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduleFetchDataEvent value) fetchData,
-    required TResult Function(ScheduleFetchCategoriesEvent value)
-        fetchCategories,
+    required TResult Function(ScheduleFetchScheduleEvent value) fetchSchedule,
     required TResult Function(ScheduleChooseCategoryEvent value) chooseCategory,
-    required TResult Function(ScheduleFetchPreviewLessonsEvent value)
-        fetchPreviewLessons,
     required TResult Function(ScheduleChangeStartDateScheduleEvent value)
         changeStartDateSchedule,
   }) {
@@ -931,11 +535,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult? Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult? Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult? Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult? Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult? Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
   }) {
@@ -945,11 +546,8 @@ class _$ScheduleChangeStartDateScheduleEvent
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduleFetchDataEvent value)? fetchData,
-    TResult Function(ScheduleFetchCategoriesEvent value)? fetchCategories,
+    TResult Function(ScheduleFetchScheduleEvent value)? fetchSchedule,
     TResult Function(ScheduleChooseCategoryEvent value)? chooseCategory,
-    TResult Function(ScheduleFetchPreviewLessonsEvent value)?
-        fetchPreviewLessons,
     TResult Function(ScheduleChangeStartDateScheduleEvent value)?
         changeStartDateSchedule,
     required TResult orElse(),
@@ -980,11 +578,8 @@ mixin _$ScheduleState {
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
     required TResult Function(Failure failure) failure,
-    required TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)
+    required TResult Function(ScheduleModel schedule,
+            CategoryModel chosenCategory, DateTime startDateSchedule)
         fetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -992,11 +587,8 @@ mixin _$ScheduleState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetching,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult? Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -1004,11 +596,8 @@ mixin _$ScheduleState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
     TResult Function(Failure failure)? failure,
-    TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
     required TResult orElse(),
   }) =>
@@ -1095,11 +684,8 @@ class _$_ScheduleFetchingState implements _ScheduleFetchingState {
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
     required TResult Function(Failure failure) failure,
-    required TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)
+    required TResult Function(ScheduleModel schedule,
+            CategoryModel chosenCategory, DateTime startDateSchedule)
         fetched,
   }) {
     return fetching();
@@ -1110,11 +696,8 @@ class _$_ScheduleFetchingState implements _ScheduleFetchingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetching,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult? Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
   }) {
     return fetching?.call();
@@ -1125,11 +708,8 @@ class _$_ScheduleFetchingState implements _ScheduleFetchingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
     TResult Function(Failure failure)? failure,
-    TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
     required TResult orElse(),
   }) {
@@ -1245,11 +825,8 @@ class _$_ScheduleErrorState implements _ScheduleErrorState {
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
     required TResult Function(Failure failure) failure,
-    required TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)
+    required TResult Function(ScheduleModel schedule,
+            CategoryModel chosenCategory, DateTime startDateSchedule)
         fetched,
   }) {
     return failure(this.failure);
@@ -1260,11 +837,8 @@ class _$_ScheduleErrorState implements _ScheduleErrorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetching,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult? Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
   }) {
     return failure?.call(this.failure);
@@ -1275,11 +849,8 @@ class _$_ScheduleErrorState implements _ScheduleErrorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
     TResult Function(Failure failure)? failure,
-    TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
     required TResult orElse(),
   }) {
@@ -1341,12 +912,12 @@ abstract class _$$_ScheduleFetchedStateCopyWith<$Res> {
       __$$_ScheduleFetchedStateCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<CategoryModel> categories,
-      CategoryModel? chosenCategory,
-      List<PreviewLessonModel> previewLessons,
-      DateTime? startDateSchedule});
+      {ScheduleModel schedule,
+      CategoryModel chosenCategory,
+      DateTime startDateSchedule});
 
-  $CategoryModelCopyWith<$Res>? get chosenCategory;
+  $ScheduleModelCopyWith<$Res> get schedule;
+  $CategoryModelCopyWith<$Res> get chosenCategory;
 }
 
 /// @nodoc
@@ -1360,39 +931,38 @@ class __$$_ScheduleFetchedStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categories = null,
-    Object? chosenCategory = freezed,
-    Object? previewLessons = null,
-    Object? startDateSchedule = freezed,
+    Object? schedule = null,
+    Object? chosenCategory = null,
+    Object? startDateSchedule = null,
   }) {
     return _then(_$_ScheduleFetchedState(
-      categories: null == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>,
-      chosenCategory: freezed == chosenCategory
+      schedule: null == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as ScheduleModel,
+      chosenCategory: null == chosenCategory
           ? _value.chosenCategory
           : chosenCategory // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
-      previewLessons: null == previewLessons
-          ? _value._previewLessons
-          : previewLessons // ignore: cast_nullable_to_non_nullable
-              as List<PreviewLessonModel>,
-      startDateSchedule: freezed == startDateSchedule
+              as CategoryModel,
+      startDateSchedule: null == startDateSchedule
           ? _value.startDateSchedule
           : startDateSchedule // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $CategoryModelCopyWith<$Res>? get chosenCategory {
-    if (_value.chosenCategory == null) {
-      return null;
-    }
+  $ScheduleModelCopyWith<$Res> get schedule {
+    return $ScheduleModelCopyWith<$Res>(_value.schedule, (value) {
+      return _then(_value.copyWith(schedule: value));
+    });
+  }
 
-    return $CategoryModelCopyWith<$Res>(_value.chosenCategory!, (value) {
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res> get chosenCategory {
+    return $CategoryModelCopyWith<$Res>(_value.chosenCategory, (value) {
       return _then(_value.copyWith(chosenCategory: value));
     });
   }
@@ -1402,39 +972,20 @@ class __$$_ScheduleFetchedStateCopyWithImpl<$Res>
 
 class _$_ScheduleFetchedState implements _ScheduleFetchedState {
   const _$_ScheduleFetchedState(
-      {final List<CategoryModel> categories = const [],
-      this.chosenCategory,
-      final List<PreviewLessonModel> previewLessons = const [],
-      this.startDateSchedule})
-      : _categories = categories,
-        _previewLessons = previewLessons;
-
-  final List<CategoryModel> _categories;
-  @override
-  @JsonKey()
-  List<CategoryModel> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
+      {required this.schedule,
+      required this.chosenCategory,
+      required this.startDateSchedule});
 
   @override
-  final CategoryModel? chosenCategory;
-  final List<PreviewLessonModel> _previewLessons;
+  final ScheduleModel schedule;
   @override
-  @JsonKey()
-  List<PreviewLessonModel> get previewLessons {
-    if (_previewLessons is EqualUnmodifiableListView) return _previewLessons;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_previewLessons);
-  }
-
+  final CategoryModel chosenCategory;
   @override
-  final DateTime? startDateSchedule;
+  final DateTime startDateSchedule;
 
   @override
   String toString() {
-    return 'ScheduleState.fetched(categories: $categories, chosenCategory: $chosenCategory, previewLessons: $previewLessons, startDateSchedule: $startDateSchedule)';
+    return 'ScheduleState.fetched(schedule: $schedule, chosenCategory: $chosenCategory, startDateSchedule: $startDateSchedule)';
   }
 
   @override
@@ -1442,23 +993,17 @@ class _$_ScheduleFetchedState implements _ScheduleFetchedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScheduleFetchedState &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
+            (identical(other.schedule, schedule) ||
+                other.schedule == schedule) &&
             (identical(other.chosenCategory, chosenCategory) ||
                 other.chosenCategory == chosenCategory) &&
-            const DeepCollectionEquality()
-                .equals(other._previewLessons, _previewLessons) &&
             (identical(other.startDateSchedule, startDateSchedule) ||
                 other.startDateSchedule == startDateSchedule));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_categories),
-      chosenCategory,
-      const DeepCollectionEquality().hash(_previewLessons),
-      startDateSchedule);
+  int get hashCode =>
+      Object.hash(runtimeType, schedule, chosenCategory, startDateSchedule);
 
   @JsonKey(ignore: true)
   @override
@@ -1472,15 +1017,11 @@ class _$_ScheduleFetchedState implements _ScheduleFetchedState {
   TResult when<TResult extends Object?>({
     required TResult Function() fetching,
     required TResult Function(Failure failure) failure,
-    required TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)
+    required TResult Function(ScheduleModel schedule,
+            CategoryModel chosenCategory, DateTime startDateSchedule)
         fetched,
   }) {
-    return fetched(
-        categories, chosenCategory, previewLessons, startDateSchedule);
+    return fetched(schedule, chosenCategory, startDateSchedule);
   }
 
   @override
@@ -1488,15 +1029,11 @@ class _$_ScheduleFetchedState implements _ScheduleFetchedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetching,
     TResult? Function(Failure failure)? failure,
-    TResult? Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult? Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
   }) {
-    return fetched?.call(
-        categories, chosenCategory, previewLessons, startDateSchedule);
+    return fetched?.call(schedule, chosenCategory, startDateSchedule);
   }
 
   @override
@@ -1504,17 +1041,13 @@ class _$_ScheduleFetchedState implements _ScheduleFetchedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetching,
     TResult Function(Failure failure)? failure,
-    TResult Function(
-            List<CategoryModel> categories,
-            CategoryModel? chosenCategory,
-            List<PreviewLessonModel> previewLessons,
-            DateTime? startDateSchedule)?
+    TResult Function(ScheduleModel schedule, CategoryModel chosenCategory,
+            DateTime startDateSchedule)?
         fetched,
     required TResult orElse(),
   }) {
     if (fetched != null) {
-      return fetched(
-          categories, chosenCategory, previewLessons, startDateSchedule);
+      return fetched(schedule, chosenCategory, startDateSchedule);
     }
     return orElse();
   }
@@ -1556,15 +1089,13 @@ class _$_ScheduleFetchedState implements _ScheduleFetchedState {
 
 abstract class _ScheduleFetchedState implements ScheduleState {
   const factory _ScheduleFetchedState(
-      {final List<CategoryModel> categories,
-      final CategoryModel? chosenCategory,
-      final List<PreviewLessonModel> previewLessons,
-      final DateTime? startDateSchedule}) = _$_ScheduleFetchedState;
+      {required final ScheduleModel schedule,
+      required final CategoryModel chosenCategory,
+      required final DateTime startDateSchedule}) = _$_ScheduleFetchedState;
 
-  List<CategoryModel> get categories;
-  CategoryModel? get chosenCategory;
-  List<PreviewLessonModel> get previewLessons;
-  DateTime? get startDateSchedule;
+  ScheduleModel get schedule;
+  CategoryModel get chosenCategory;
+  DateTime get startDateSchedule;
   @JsonKey(ignore: true)
   _$$_ScheduleFetchedStateCopyWith<_$_ScheduleFetchedState> get copyWith =>
       throw _privateConstructorUsedError;

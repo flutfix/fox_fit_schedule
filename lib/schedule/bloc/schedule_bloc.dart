@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fox_fit_schedule/schedule/models/category_model.dart';
 import 'package:fox_fit_schedule/schedule/models/date_time_serializer.dart';
 import 'package:fox_fit_schedule/schedule/models/failure.dart';
-import 'package:fox_fit_schedule/schedule/models/preview_lesson_model.dart';
+import 'package:fox_fit_schedule/schedule/models/schedule_model.dart';
 import 'package:fox_fit_schedule/schedule/repository/i_schedule_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
@@ -23,94 +23,45 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
   }
 
   void _setupEvents() {
-    on<ScheduleFetchDataEvent>(_onFetchData, transformer: droppable());
-    on<ScheduleFetchCategoriesEvent>(_onFetchCategories, transformer: droppable());
+    on<ScheduleFetchScheduleEvent>(_onFetchSchedule, transformer: droppable());
     on<ScheduleChooseCategoryEvent>(_onChooseCategory, transformer: droppable());
-    on<ScheduleFetchPreviewLessonsEvent>(_onFetchPreviewLessons, transformer: droppable());
     on<ScheduleChangeStartDateScheduleEvent>(_onChangeStartDateSchedule, transformer: droppable());
   }
 
   /// Получение всех необходимых данных для прогрузки экрана.
-  FutureOr<void> _onFetchData(ScheduleFetchDataEvent event, Emitter emit) async {
-    add(ScheduleEvent.fetchCategories(clubId: event.clubId));
-    add(ScheduleEvent.fetchPreviewLessons(clubId: event.clubId, startDate: DateTime.now()));
-  }
+  FutureOr<void> _onFetchSchedule(ScheduleFetchScheduleEvent event, Emitter emit) async {
+    final startDate = DateTime(event.startDate.year, event.startDate.month, event.startDate.day - 7);
+    final endDate = DateTime(event.startDate.year, event.startDate.month, event.startDate.day + 14);
 
-  /// Получение списка категорий.
-  FutureOr<void> _onFetchCategories(ScheduleFetchCategoriesEvent event, Emitter emit) async {
-    final response = await _scheduleRepository.fetchCategories(clubId: event.clubId);
+    final startDateStr = DateTimeSerializer.toJsonFormatyyyyMMdd(startDate);
+    final endDateStr = DateTimeSerializer.toJsonFormatyyyyMMdd(endDate);
+
+    final response = await _scheduleRepository.fetchSchedule(
+      clubId: event.clubId,
+      startDate: startDateStr,
+      endDate: endDateStr,
+    );
 
     response.fold(
       (failure) => _onStateFailure(emit, failure),
-      (categories) => _onFetchCategoriesSuccessful(emit, categories),
+      (schedule) => _onFetchScheduleSuccessful(emit, schedule, event.startDate),
     );
   }
 
-  /// Если запрос на получение списка категорий успешно прошел.
-  void _onFetchCategoriesSuccessful(Emitter emit, List<CategoryModel> categories) {
-    final sortedCategories = _sortCategoriesByCreateDate(categories: categories);
-
-    state.maybeMap(
-      failure: (_) {},
-      fetched: (state) {
-        final chosenCategory = state.chosenCategory ?? sortedCategories.firstOrNull;
-        emit(state.copyWith(categories: sortedCategories, chosenCategory: chosenCategory));
-        if (chosenCategory != null) {
-          add(ScheduleEvent.chooseCategory(category: chosenCategory));
-        }
-      },
-      orElse: () {
-        emit(ScheduleState.fetched(
-          categories: sortedCategories,
-          chosenCategory: sortedCategories.firstOrNull,
-        ));
-      },
-    );
+  /// Если запрос на получение всех данных успешно прошел.
+  void _onFetchScheduleSuccessful(Emitter emit, ScheduleModel schedule, DateTime startDate) {
+    emit(ScheduleState.fetched(
+      schedule: schedule,
+      chosenCategory: schedule.categories.first,
+      startDateSchedule: startDate,
+    ));
   }
 
   /// Смена категории.
   FutureOr<void> _onChooseCategory(ScheduleChooseCategoryEvent event, Emitter emit) {
     state.maybeMap(
       fetched: (state) => emit(state.copyWith(chosenCategory: event.category)),
-      orElse: () => _logger.w('Illegal ${state.runtimeType} for ScheduleCreateEvent'),
-    );
-  }
-
-  /// Получение занятий для предпросмотра расписания.
-  FutureOr<void> _onFetchPreviewLessons(ScheduleFetchPreviewLessonsEvent event, Emitter emit) async {
-    final startDate = DateTimeSerializer.toJsonFormatyyyyMMdd(DateTime(
-      event.startDate.year,
-      event.startDate.month,
-      event.startDate.day - 7,
-    ));
-    final endDate = DateTimeSerializer.toJsonFormatyyyyMMdd(DateTime(
-      event.startDate.year,
-      event.startDate.month,
-      event.startDate.day + 14,
-    ));
-
-    final response = await _scheduleRepository.fetchPreviewLessons(
-      clubId: event.clubId,
-      startDate: startDate,
-      endDate: endDate,
-    );
-
-    response.fold(
-      (failure) => _onStateFailure(emit, failure),
-      (previewLessons) => _onFetchPreviewLessonsSuccessful(emit, previewLessons),
-    );
-  }
-
-  /// Если запрос на получение списка занятий успешно прошел.
-  void _onFetchPreviewLessonsSuccessful(Emitter emit, List<PreviewLessonModel> previewLessons) {
-    state.maybeMap(
-      failure: (_) {},
-      fetched: (state) {
-        emit(state.copyWith(previewLessons: previewLessons));
-      },
-      orElse: () {
-        emit(ScheduleState.fetched(previewLessons: previewLessons));
-      },
+      orElse: () => _logger.w('Illegal ${state.runtimeType} for ScheduleChooseCategoryEvent'),
     );
   }
 
@@ -119,7 +70,7 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
     state.maybeMap(
       fetched: (state) {
         emit(state.copyWith(startDateSchedule: event.startDate));
-        add(ScheduleEvent.fetchPreviewLessons(clubId: event.clubId, startDate: event.startDate));
+        add(ScheduleEvent.fetchSchedule(clubId: event.clubId, startDate: event.startDate));
       },
       orElse: () {
         _logger.w('Illegal ${state.runtimeType} for ScheduleChangeStartDateScheduleEvent');
@@ -130,10 +81,5 @@ class ScheduleBloc extends Bloc<ScheduleEvent, ScheduleState> {
   /// Вывоз ошибки состояния.
   void _onStateFailure(Emitter emit, Failure failure) {
     emit(ScheduleState.failure(failure: failure));
-  }
-
-  /// Сортировка категорий по дате создания.
-  List<CategoryModel> _sortCategoriesByCreateDate({required List<CategoryModel> categories}) {
-    return categories.toList()..sort((a, b) => a.createdAt.compareTo(b.createdAt));
   }
 }

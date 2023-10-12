@@ -49,98 +49,94 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScheduleBloc, ScheduleState>(
-      builder: (context, state) {
-        return state.map(
-          fetching: (_) => const LoadingIndicator(),
-          failure: (_) => const SizedBox(),
-          fetched: (state) {
-            final startDate = state.startDateSchedule ?? DateTime.now();
-
-            return Scaffold(
-              body: Container(
-                padding: const EdgeInsets.all(20),
-                color: _layout.theme.card,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50),
-                      child: Text(
-                        _layout.intl.schedule_preview,
-                        style: _layout.fonts.styleB20.copyWith(color: _layout.theme.text),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: CategoriesSwitcher(
-                        categories: state.categories,
-                        chosenCategory: state.chosenCategory ?? state.categories.first,
-                        onTapCategory: _chooseCategory,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
+    return Scaffold(
+      backgroundColor: _layout.theme.card,
+      body: BlocBuilder<ScheduleBloc, ScheduleState>(
+        builder: (context, state) {
+          return state.map(
+            fetching: (_) => const Center(child: LoadingIndicator()),
+            failure: (_) => const Center(child: Text('Ошибка загрузки расписания')),
+            fetched: (state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    color: _layout.theme.card,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Timelapse(
-                          mainController: _timelapseScheduleController,
-                          attachedController: _verticalScheduleController,
-                        ),
-                        const SizedBox(width: 8),
-                        SizedBox(
-                          width: 980,
-                          child: Stack(
-                            children: [
-                              NotificationListener<ScrollNotification>(
-                                onNotification: _onScroll,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  controller: _horizontalScheduleController,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      DatesRow(startDate: startDate),
-                                      LessonsGrid(
-                                        previewLessons: state.previewLessons,
-                                        startDate: startDate,
-                                        mainController: _verticalScheduleController,
-                                        attachedController: _timelapseScheduleController,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 18),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    HoverOpacity(
-                                      onTap: () => _animateScheduleLeft(currentStartDate: startDate),
-                                      child: SvgPicture.asset(Assets.icons.arrowInCircleLeft),
-                                    ),
-                                    HoverOpacity(
-                                      onTap: () => _animateScheduleRight(currentStartDate: startDate),
-                                      child: SvgPicture.asset(Assets.icons.arrowInCircleRight),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30),
+                          child: CategoriesSwitcher(
+                            categories: state.schedule.categories,
+                            chosenCategory: state.chosenCategory,
+                            onTapCategory: _chooseCategory,
                           ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Timelapse(
+                              mainController: _timelapseScheduleController,
+                              attachedController: _verticalScheduleController,
+                            ),
+                            const SizedBox(width: 8),
+                            SizedBox(
+                              width: 980,
+                              child: Stack(
+                                children: [
+                                  NotificationListener<ScrollNotification>(
+                                    onNotification: _onScroll,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      controller: _horizontalScheduleController,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          DatesRow(startDate: state.startDateSchedule),
+                                          LessonsGrid(
+                                            lessons: state.schedule.lessons,
+                                            startDate: state.startDateSchedule,
+                                            mainController: _verticalScheduleController,
+                                            attachedController: _timelapseScheduleController,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 18),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        HoverOpacity(
+                                          onTap: () => _animateScheduleLeft(currentStartDate: state.startDateSchedule),
+                                          child: SvgPicture.asset(Assets.icons.arrowInCircleLeft),
+                                        ),
+                                        HoverOpacity(
+                                          onTap: () => _animateScheduleRight(currentStartDate: state.startDateSchedule),
+                                          child: SvgPicture.asset(Assets.icons.arrowInCircleRight),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -150,7 +146,7 @@ class _ScheduleState extends State<Schedule> {
     final code = link?.split('club_id=').last.split('&').first ?? '';
     _clubId = code;
     if (!mounted) return;
-    context.read<ScheduleBloc>().add(ScheduleEvent.fetchData(clubId: _clubId));
+    context.read<ScheduleBloc>().add(ScheduleEvent.fetchSchedule(clubId: _clubId, startDate: DateTime.now()));
   }
 
   /// Смена категории.

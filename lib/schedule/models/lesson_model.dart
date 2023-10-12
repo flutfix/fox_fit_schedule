@@ -1,12 +1,12 @@
 import 'package:fox_fit_schedule/schedule/models/date_time_serializer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'preview_lesson_model.freezed.dart';
-part 'preview_lesson_model.g.dart';
+part 'lesson_model.freezed.dart';
+part 'lesson_model.g.dart';
 
 @freezed
-class PreviewLessonModel with _$PreviewLessonModel {
-  const factory PreviewLessonModel({
+class LessonModel with _$LessonModel {
+  const factory LessonModel({
     required String id,
     @JsonKey(name: 'by_appointment')
         required bool byAppointment,
@@ -40,7 +40,7 @@ class PreviewLessonModel with _$PreviewLessonModel {
         required String trainerId,
     @JsonKey(name: 'trainer_name')
         required String trainerName,
-  }) = _PreviewLessonModel;
+  }) = _LessonModel;
 
-  factory PreviewLessonModel.fromJson(Map<String, dynamic> json) => _$PreviewLessonModelFromJson(json);
+  factory LessonModel.fromJson(Map<String, dynamic> json) => _$LessonModelFromJson(json);
 }

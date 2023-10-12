@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'preview_lesson_model.dart';
+part of 'lesson_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PreviewLessonModel _$$_PreviewLessonModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_PreviewLessonModel(
+_$_LessonModel _$$_LessonModelFromJson(Map<String, dynamic> json) =>
+    _$_LessonModel(
       id: json['id'] as String,
       byAppointment: json['by_appointment'] as bool,
       clientBooking: json['client_booking'] as bool,
@@ -28,8 +27,7 @@ _$_PreviewLessonModel _$$_PreviewLessonModelFromJson(
       trainerName: json['trainer_name'] as String,
     );
 
-Map<String, dynamic> _$$_PreviewLessonModelToJson(
-        _$_PreviewLessonModel instance) =>
+Map<String, dynamic> _$$_LessonModelToJson(_$_LessonModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'by_appointment': instance.byAppointment,

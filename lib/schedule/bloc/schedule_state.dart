@@ -7,9 +7,8 @@ class ScheduleState with _$ScheduleState {
   const factory ScheduleState.failure({required Failure failure}) = _ScheduleErrorState;
 
   const factory ScheduleState.fetched({
-    @Default([]) List<CategoryModel> categories,
-    CategoryModel? chosenCategory,
-    @Default([]) List<PreviewLessonModel> previewLessons,
-    DateTime? startDateSchedule,
+    required ScheduleModel schedule,
+    required CategoryModel chosenCategory,
+    required DateTime startDateSchedule,
   }) = _ScheduleFetchedState;
 }

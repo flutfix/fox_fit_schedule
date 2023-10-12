@@ -19,39 +19,7 @@ class _ScheduleApi implements ScheduleApi {
   String? baseUrl;
 
   @override
-  Future<CategoriesModel> fetchCategories({
-    required clubId,
-    page,
-    limit,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'club_id': clubId,
-      r'page': page,
-      r'limit': limit,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CategoriesModel>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'v1/lesson-categories',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CategoriesModel.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<PreviewLessonsModel> fetchPreviewLessons({
+  Future<ScheduleModel> fetchSchedule({
     required clubId,
     required startDate,
     required endDate,
@@ -64,20 +32,20 @@ class _ScheduleApi implements ScheduleApi {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PreviewLessonsModel>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ScheduleModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'v1/onec-lessons',
+              'v1/onec/club-schedule',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PreviewLessonsModel.fromJson(_result.data!);
+    final value = ScheduleModel.fromJson(_result.data!);
     return value;
   }
 

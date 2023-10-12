@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:fox_fit_schedule/schedule/api/schedule_api.dart';
 import 'package:fox_fit_schedule/schedule/bloc/schedule_bloc.dart';
 import 'package:fox_fit_schedule/schedule/common/logger_service.dart';
-import 'package:fox_fit_schedule/schedule/common/token_interceptor.dart';
 import 'package:fox_fit_schedule/schedule/config/config.dart';
 import 'package:fox_fit_schedule/schedule/repository/i_schedule_repository.dart';
 import 'package:fox_fit_schedule/schedule/repository/schedule_repository.dart';
@@ -33,7 +32,5 @@ void injectDependencies() {
     ),
     instanceName: 'initial',
   );
-  sl.registerLazySingleton<Dio>(
-    () => sl<Dio>(instanceName: 'initial')..interceptors.addAll([TokenInterceptor()]),
-  );
+  sl.registerLazySingleton<Dio>(() => sl<Dio>(instanceName: 'initial'));
 }
